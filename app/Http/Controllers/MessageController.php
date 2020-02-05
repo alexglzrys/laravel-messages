@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MessageStoreRequest;
+use App\Mail\MessageReceived;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 
 class MessageController extends Controller
 {
@@ -36,6 +39,11 @@ class MessageController extends Controller
     public function store(MessageStoreRequest $request)
     {
         // Validación de entradas de formulario mediante FormRequest
+
+        // Enviar un Mailable al usuario que envío el mensaje.
+        // Se recomienda usar queue() en lugar de send() para que el usuario no tenga que esperar la respuesta hasta que se haya enviado el mail. Si no tenemos configurado el queue en laravel, se usa por defecto el método send
+        // Si le pasamos información al mailable, es necesario recibirla en su respectivo contructor
+        Mail::to($request->email)->queue(new MessageReceived($request->all()));
 
         return $request;
     }
