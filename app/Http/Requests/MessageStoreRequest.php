@@ -30,4 +30,26 @@ class MessageStoreRequest extends FormRequest
             'content' => 'required|min:3'
         ];
     }
+
+    // Personalizar el contexto de los nombres enviados en el formulario
+    public function attributes()
+    {
+        // El cambio de idioma se hace de forma dinámica - multi-idioma
+        return [
+            'name' => __('name'),
+            'subject' => __('subject'),
+            'content' => __('content')
+        ];
+    }
+
+    // Personalizar el contexto (mensaje) de cada regla de validación
+    public function messages()
+    {
+        return [
+            'name.required' => 'El :attribute es un dato obligatorio',
+            'email.required' => 'El :attribute es un dato obligatorio',
+            'subject.required' => 'El :attribute es un dato obligatorio',
+            'content.required' => 'El :attribute es un dato obligatorio'
+        ];
+    }
 }

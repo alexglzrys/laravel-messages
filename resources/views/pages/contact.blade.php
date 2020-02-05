@@ -3,7 +3,7 @@
 @section('title', 'Contact')
 
 @section('content')
-<h1>Contac</h1>
+<h1>@lang('Contact')</h1>
 @forelse($contacts as $contact)
     <li>Name: {{ $contact['name'] }} - Phone: {{ $contact['phone'] }}</li>
 @empty
@@ -40,6 +40,6 @@
         <textarea name="content" placeholder="Content...">{{ old('content') }}</textarea>
         {!! $errors->first('content', '<span>:message</span>') !!}
     </div>
-    <button>Enviar</button>
+    <button>@lang('Send')</button>
 </form>
 @endsection
