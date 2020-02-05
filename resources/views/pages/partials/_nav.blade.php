@@ -7,7 +7,7 @@
             <a href="{{ route('pages.about') }}">About</a>
         </li>
         <li>
-            <a href="{{ route('pages.portfolio') }}">Portfolio</a>
+            <a href="{{ route('projects.index') }}">Portfolio</a>
         </li>
         <li>
             <a href="{{ route('pages.contact') }}">Contact</a>
