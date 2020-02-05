@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
@@ -13,7 +14,9 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        return view('projects.index');
+        // Recuperar los proyectos ordenados por fecha de actualización descendente, así como ordenados por titulo de forma ascendente y paginados de 2 en 2
+        $projects = Project::latest('updated_at')->orderBy('title')->paginate(2);
+        return view('projects.index', compact('projects'));
     }
 
     /**
