@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'pages.home')->name('pages.home');
+Route::view('/about', 'pages.about')->name('pages.about');
+Route::view('/portfolio', 'pages.portfolio')->name('pages.portfolio');
+Route::view('/contact', 'pages.contact')->name('pages.contact');
