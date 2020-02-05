@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MessageStoreRequest;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -32,8 +33,10 @@ class MessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MessageStoreRequest $request)
     {
+        // Validación de entradas de formulario mediante FormRequest
+
         return $request;
     }
 
