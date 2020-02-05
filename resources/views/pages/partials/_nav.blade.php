@@ -17,8 +17,9 @@
         <li class="{{ setActive('pages.about') }}">
             <a href="{{ route('pages.about') }}">@lang('About')</a>
         </li>
-        <li class="{{ setActive('projects.index') }}">
-            <a href="{{ route('projects.index') }}">@lang('Portfolio')</a>
+        {{-- El comodín * indica que el nombre de ruta debe coincidir con projects.(lo que sea) --}}
+        <li class="{{ setActive('projects.*') }}">
+            <a href="{{ route('projects.index') }}">@lang('Projects')</a>
         </li>
         <li class="{{ setActive('pages.contact') }}">
             <a href="{{ route('pages.contact') }}">@lang('Contact')</a>

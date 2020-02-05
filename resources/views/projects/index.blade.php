@@ -3,10 +3,12 @@
 @section('title', 'Portfolio')
 
 @section('content')
-<h1>Portfolio</h1>
+<h1>@lang('Projects')</h1>
 <ul>
     @forelse($projects as $project)
-        <li>{{ $project->title }}</li>
+        <li>
+            {{-- Laravel por defecto, pasa siempre el id del objeto en cuestión. A salvo que se le especifique lo contrario al hacer Route Model Binding - en su modelo (getRouteKeyName) --}}
+            <a href="{{ route('projects.show', $project) }}">{{ $project->title }}</a></li>
     @empty
         <li>@lang('Not found projects')</li>
     @endforelse

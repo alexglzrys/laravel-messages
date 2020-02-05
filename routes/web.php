@@ -15,5 +15,5 @@ Route::view('/', 'pages.home')->name('pages.home');
 Route::view('/about', 'pages.about')->name('pages.about');
 Route::get('contact', 'ContactController')->name('pages.contact');
 
-Route::resource('projects', 'PortfolioController');
+Route::resource('projects', 'ProjectController');
 Route::resource('messages', 'MessageController');
