@@ -26,7 +26,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return 'Formulario de creación de proyectos';
+        return view('projects.create');
     }
 
     /**
@@ -37,7 +37,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Se deben especificar en el modelo, los campos que se quieren asignar masivamente -- $fillable, cuando se hace uso de $request->all()
+        // Project::create($request->all());
+
+        // Se puede especificar en el modelo, que ningún campo se quiere proteger contra asignación masiva -- $guarded, ya que estamos protegidos al registrar los campos correctos con  $request->only()
+        Project::create($request->only('title', 'url', 'description'));
+
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -46,9 +52,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        $project = Project::findOrFail($id);
+        // Route Model Binding busca implitamente el proyecto con base en la url (ver modelo Project)
         return view('projects.show', compact('project'));
     }
 
