@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Portfolio</h1>
-</body>
-</html>
+@extends('pages.layout')
+
+@section('title', 'Portfolio')
+
+@section('content')
+<h1>Portfolio</h1>
+@endsection
