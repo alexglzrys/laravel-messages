@@ -94,7 +94,7 @@ class ProjectController extends Controller
         // Actualizamos de forma masiva, solo aquellos campos que figuran en la validación
         $project->update($request->validated());
 
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.show', $project);
     }
 
     /**
@@ -103,8 +103,10 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        // Dado que la instancia del modelo es inyectado en el controlador a través de Route Model Binding, podemos invocar sus respectivos metodos ActiveRecord (save, update, delete) de forma inmediata
+        $project->delete();
+        return redirect()->route('projects.index');
     }
 }
