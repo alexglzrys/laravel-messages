@@ -28,7 +28,16 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        // Enviamos una instancia vacía del modelo Project a la vista create. Esto es necesario dado que estamos reutilizando los controles de formulario tanto para crear como para actualizar.
+        //
+        // Esto es especial en forms de actualización
+        // {{ old('namecontrol', $project->namecontrol) }}
+        // Esto es especial en form de creación
+        // {{ old('namecontrol') }}
+        //
+        // Por tanto, si enviamos una instancia vacía de Project no nos lanzará error en el form de creación, ya que el objeto existe pero en sus respectivas propiedades hay valores nulos.
+        $project = new Project();
+        return view('projects.create', compact('project'));
     }
 
     /**
