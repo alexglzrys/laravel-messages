@@ -4,7 +4,10 @@
 
 @section('content')
 <h1>@lang('Projects')</h1>
-<a href="{{ route('projects.create') }}">Crear un proyecto</a>
+{{-- Mostrar el enlace de crear proyectos, solo para usuarios autenticados --}}
+@auth
+    <a href="{{ route('projects.create') }}">Crear un proyecto</a>
+@endauth
 <ul>
     @forelse($projects as $project)
         <li>

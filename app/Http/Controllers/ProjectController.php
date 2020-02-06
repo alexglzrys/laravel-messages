@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        // Aplicar el middleware auth a todos los metodos de este controlador, a excepción de index y show.
+        // Es decir, solo usuarios autenticados pueden crear, editar y eliminar proyectos
+        $this->middleware('auth')->except('index', 'show');
+    }
+
     /**
      * Display a listing of the resource.
      *
