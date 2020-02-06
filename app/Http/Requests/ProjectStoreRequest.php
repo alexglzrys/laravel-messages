@@ -27,7 +27,7 @@ class ProjectStoreRequest extends FormRequest
         // Tip: El resultado de la validación, se puede emplear para indicar a la base de datos que estos campos pueden ser asignados masivamente durante el registro de información
         return [
             'title' => 'required',
-            'url' => 'required|unique:projects',
+            'url' => 'required|unique:projects,url',
             'description' => 'required|min:10|max:500'
         ];
     }

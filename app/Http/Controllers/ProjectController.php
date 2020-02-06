@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectStoreRequest;
+use App\Http\Requests\ProjectUpdateRequest;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -41,10 +42,10 @@ class ProjectController extends Controller
         // Se deben especificar en el modelo, los campos que se quieren asignar masivamente -- $fillable, cuando se hace uso de $request->all()
         // Project::create($request->all());
 
-        // Se puede especificar en el modelo, que ningún campo se quiere proteger contra asignación masiva -- $guarded, ya que estamos protegidos al registrar los campos correctos con  $request->only()
+        // Se puede especificar en el modelo, que ningún campo se quiere proteger contra asignación masiva -- $guarded = [], ya que estamos protegidos al registrar los campos correctos con  $request->only()
         // Project::create($request->only('title', 'url', 'description'));
 
-        // Podemos omitir las propiedades $fillable y $guarded en el modelo, si nos protegemos de la asignación masiva a través del resultado de validación del FormRequest. $request->validated() nos retorna los campos que pasaron la validación, y por lógica, serán los campos que si se pueden asignar masivamente en la base de datos
+        // $guarded = [] en el modelo, es válido también si nos protegemos de la asignación masiva a través del resultado de validación del FormRequest. $request->validated() nos retorna los campos que pasaron la validación, y por lógica, serán los campos que si se pueden asignar masivamente en la base de datos
         Project::create($request->validated());
         return redirect()->route('projects.index');
     }
@@ -67,9 +68,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        return 'Formulario de edición de contenido';
+        return view('projects.edit', compact('project'));
     }
 
     /**
@@ -79,9 +80,12 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectUpdateRequest $request, Project $project)
     {
-        //
+        // Actualizamos de forma masiva, solo aquellos campos que figuran en la validación
+        $project->update($request->validated());
+
+        return redirect()->route('projects.index');
     }
 
     /**
