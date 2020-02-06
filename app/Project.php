@@ -10,7 +10,7 @@ class Project extends Model
     // protected $fillable = ['title', 'url', 'description'];
 
     // Necesario cuando nos protegemos de asignación masiva a través de $request->only('campoA', 'campoB', 'campoN');
-    protected $guarded = [];
+    // protected $guarded = [];
 
     // No es necesario declarar en el modelo las propiedades $fillable o $guarded, cuando nos protegemos de asignación masiva a través del resultado de las validaciones. - FormRequest. En este caso, los campos que se pueden asignar masivamente son los que figuran en el arreglo de validación.
 

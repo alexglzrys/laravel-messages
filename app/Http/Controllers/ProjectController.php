@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectStoreRequest;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -35,14 +36,16 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectStoreRequest $request)
     {
         // Se deben especificar en el modelo, los campos que se quieren asignar masivamente -- $fillable, cuando se hace uso de $request->all()
         // Project::create($request->all());
 
         // Se puede especificar en el modelo, que ningún campo se quiere proteger contra asignación masiva -- $guarded, ya que estamos protegidos al registrar los campos correctos con  $request->only()
-        Project::create($request->only('title', 'url', 'description'));
+        // Project::create($request->only('title', 'url', 'description'));
 
+        // Podemos omitir las propiedades $fillable y $guarded en el modelo, si nos protegemos de la asignación masiva a través del resultado de validación del FormRequest. $request->validated() nos retorna los campos que pasaron la validación, y por lógica, serán los campos que si se pueden asignar masivamente en la base de datos
+        Project::create($request->validated());
         return redirect()->route('projects.index');
     }
 
