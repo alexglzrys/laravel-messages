@@ -6,3 +6,8 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Importar estilos propios de mi aplicación
+// Este archivo es tomado por laravel mix, para compilarlo y enviarlo como un recurso publico en public/css/app.css.
+// por ello es un buen punto de partida para incluir otros archivos de estilo para incluirlos en el bundle final.
+@import 'site';

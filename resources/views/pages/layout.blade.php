@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', config('app.name'))</title>
-    <style>
-        .active > a {
-            color: red;
-            text-decoration: none;
-        }
-    </style>
+    {{-- mix() es un helper que hace referencia a la utlima versión de los assets generados en modo versionado. Esto es util dado que si hacemos un cambio posterior, mix generará un archivo compilado con una versión diferente, la cual debemos incluir manualmente. --}}
+    <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
+    <script src="{{ mix('js/app.js') }}"></script>
 </head>
 <body>
     @include('pages.partials._nav')
