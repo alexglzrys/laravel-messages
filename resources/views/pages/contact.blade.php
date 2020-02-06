@@ -21,6 +21,8 @@
     @endif
 </div>
 
+{{-- Si no hay mensaje de session (feedback), es porque el usuario aun no envia el formulario. Por tanto lo mostramos --}}
+@if(!session('info'))
 <form action="{{ route('messages.store') }}" method="POST">
     @csrf
     <div>
@@ -42,4 +44,5 @@
     </div>
     <button>@lang('Send')</button>
 </form>
+@endif
 @endsection

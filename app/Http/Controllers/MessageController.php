@@ -45,7 +45,8 @@ class MessageController extends Controller
         // Si le pasamos información al mailable, es necesario recibirla en su respectivo contructor
         Mail::to($request->email)->queue(new MessageReceived($request->all()));
 
-        return $request;
+        // Retornar la ruta anterior con un mensaje de session (feedback)
+        return back()->with('info', 'Tu mensaje ha sido recibido con éxito, te responderemos en menos de 1 hora');
     }
 
     /**

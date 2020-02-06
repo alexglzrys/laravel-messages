@@ -56,7 +56,9 @@ class ProjectController extends Controller
 
         // $guarded = [] en el modelo, es válido también si nos protegemos de la asignación masiva a través del resultado de validación del FormRequest. $request->validated() nos retorna los campos que pasaron la validación, y por lógica, serán los campos que si se pueden asignar masivamente en la base de datos
         Project::create($request->validated());
-        return redirect()->route('projects.index');
+
+        // Redireccionar a la vista index con un mensaje de session (feedback)
+        return redirect()->route('projects.index')->with('info', 'El proyecto fue creado con exito');
     }
 
     /**
@@ -94,7 +96,8 @@ class ProjectController extends Controller
         // Actualizamos de forma masiva, solo aquellos campos que figuran en la validación
         $project->update($request->validated());
 
-        return redirect()->route('projects.show', $project);
+        // Redireccionar a la vista show, con un mensaje de session (feedback)
+        return redirect()->route('projects.show', $project)->with('info', 'El proyecto fue actualizado con éxito');
     }
 
     /**
@@ -107,6 +110,8 @@ class ProjectController extends Controller
     {
         // Dado que la instancia del modelo es inyectado en el controlador a través de Route Model Binding, podemos invocar sus respectivos metodos ActiveRecord (save, update, delete) de forma inmediata
         $project->delete();
-        return redirect()->route('projects.index');
+
+        // Redireccionar a la vista index, con un mensaje de session (feedback)
+        return redirect()->route('projects.index')->with('info', 'El proyecto fue eliminado con éxito');
     }
 }
