@@ -24,5 +24,11 @@ Route::get('contact', 'ContactController')->name('pages.contact');
 Route::resource('proyectos', 'ProjectController')
     ->names('projects')
     ->parameters(['proyectos' => 'project']);
-//
 Route::resource('messages', 'MessageController');
+
+// Cuando generamos el scaffolding de autenticación en laravel, nos agrega en el archivo web.php un simplificador que apunta a las rutas para registrar (register | POST/GET), para hacer login (login | POST/GET) y para cerrar session (logout | POST)
+// Para cambiar el comportamiento de redireccionamiento al hacer login, registrarse o logout. Se puede cambiar o agregar una propiedad en el RouteServiceProvider con la ruta necesaria, y establecerla en la propiedad de los controllers del namespace Auth $redirecTo
+Auth::routes();
+
+// Deshabilitar la ruta de registro de usuarios en la aplicación
+// Auth::routes(['register' => false]);

@@ -24,5 +24,20 @@
         <li class="{{ setActive('pages.contact') }}">
             <a href="{{ route('pages.contact') }}">@lang('Contact')</a>
         </li>
+        {{-- Si el usario actual es un invitado --}}
+        @guest
+            {{-- mostramos el enlace de iniciar sesion --}}
+            <li>
+                <a href="{{ route('login') }}">Iniciar sesión</a>
+            </li>
+        @else
+            {{-- Caso contrario, mostramos el enlace de cerrar sesión --}}
+            <li>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button>Cerrar sesión</button>
+                </form>
+            </li>
+        @endguest
     </ul>
 </nav>
