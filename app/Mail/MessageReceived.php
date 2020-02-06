@@ -16,8 +16,9 @@ class MessageReceived extends Mailable
     // SendGrid: es en producción.
     use Queueable, SerializesModels, SendGrid;
 
+    public $name = "LaravelMessages";
     // Propiedad que almacenará el asunto del email
-    public $subject = "Gracias por registrarte al SAT";
+    public $subject = "Confirmación de contacto";
     // Propiedad que almacenará todo el contenido dinámico a enviar en el email
     // (tiene que ser publica para enviarla a la vista)
     public $content;
@@ -43,7 +44,8 @@ class MessageReceived extends Mailable
     {
         // Retornar una vista que figurará como el contenido del mail
         // Implicitamente se envía el contenido publico como variable de la vista
-        return $this->from('gobiernosat@mexico.org')
+        return $this->from('info@laravelmessages.dev',  $this->name)
+                    ->cc('alexglzrys@gmail.com', $this->name)
                     ->view('mails.message-received');
     }
 }

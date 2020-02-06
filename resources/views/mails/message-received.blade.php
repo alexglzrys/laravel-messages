@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Laravel Messages</title>
 </head>
 <body>
     {{--
@@ -11,10 +11,12 @@
 
         var_dump($message)
     --}}
-    <h1>Bienvenido {{ $content['name'] }}</h1>
-    <p>El asunto de tu mensaje es: {{ $content['subject'] }}</p>
+    <h3>Hola: {{ $content['name'] }}</h3>
+    <p>Este mensaje es solo un ejemplo demostrativo de como enviar correo electrónico masivo y/o comercial a través de la plataforma SendGrid y Laravel.</p>
     <hr>
-    <p>{{ $content['content'] }}</p>
-    <small>Agradecemos tu registro y seguimos en contacto</small>
+    <p>Asunto: {{ $content['subject'] }}</p>
+    <p>Mensaje: {{ $content['content'] }}</p>
+    <hr>
+    <small>Gracias por haber establecido contacto con un servidor.</small>
 </body>
 </html>

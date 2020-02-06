@@ -1,4 +1,7 @@
-.active > a {
-    color: gold;
-    text-decoration: none;
+.navbar .active > a {
+    color: gold !important;
+    text-decoration: none !important;
+}
+.navbar-nav a {
+    color: $primary !important;
 }

@@ -24,7 +24,7 @@ class ProjectController extends Controller
     public function index()
     {
         // Recuperar los proyectos ordenados por fecha de actualización descendente, así como ordenados por titulo de forma ascendente y paginados de 2 en 2
-        $projects = Project::latest('updated_at')->orderBy('title')->paginate(2);
+        $projects = Project::latest('updated_at')->orderBy('title')->paginate(8);
         return view('projects.index', compact('projects'));
     }
 

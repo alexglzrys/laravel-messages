@@ -46,7 +46,7 @@ class MessageController extends Controller
         Mail::to($request->email)->queue(new MessageReceived($request->all()));
 
         // Retornar la ruta anterior con un mensaje de session (feedback)
-        return back()->with('info', 'Tu mensaje ha sido recibido con éxito, te responderemos en menos de 1 hora');
+        return back()->with('info', 'Tu mensaje ha sido recibido, te invitamos a consultar tu bandeja de entrada para confirmar esta solicitud. Gracias');
     }
 
     /**
